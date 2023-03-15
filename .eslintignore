@@ -1,0 +1,9 @@
+
+
+node_modules
+.github
+.next
+
+# generated css files
+*.css
+*.css.map
