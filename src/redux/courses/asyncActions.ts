@@ -2,17 +2,17 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import axiosInstance from '@/services/instance';
 
-import { GetCoursesParams } from './types';
 import { Course } from './types';
 
-export const fetchCourses = createAsyncThunk<Course[], GetCoursesParams>(
+export const fetchCourses = createAsyncThunk<Course[]>(
   'details/getDetails',
 
-  async params => {
-    const data = await axiosInstance.get('core/preview-courses', {
-      maxRedirects: 0,
-    });
-    console.log('data =', data, 'params =', params);
-    return data.data;
+  async () => {
+    const { data, status, statusText } = await axiosInstance.get<Course[]>(
+      'core/preview-courses',
+    );
+    if (status === 200) return data;
+    console.log('data =', data);
+    throw new Error(String(statusText));
   },
 );

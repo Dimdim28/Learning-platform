@@ -8,7 +8,7 @@ import styles from './courses-page.module.scss';
 const CoursesPage = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(fetchCourses({ id: 'l' }));
+    dispatch(fetchCourses());
   }, []);
 
   return <div className={styles.wrapper}>Courses page</div>;

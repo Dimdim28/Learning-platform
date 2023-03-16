@@ -27,7 +27,3 @@ export interface CoursesSliceState {
   courses: Course[];
   Error?: string;
 }
-
-export interface GetCoursesParams {
-  id: string;
-}

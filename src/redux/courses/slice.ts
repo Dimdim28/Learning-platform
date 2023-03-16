@@ -16,6 +16,7 @@ const coursesSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder.addCase(fetchCourses.pending, state => {
+      delete state.Error;
       state.status = Status.LOADING;
     });
     builder.addCase(fetchCourses.fulfilled, (state, action) => {
