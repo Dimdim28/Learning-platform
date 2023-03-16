@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://api.wisey.app/api/v1',
+  baseURL: 'https://api.wisey.app/api/v1',
   headers: {
     'Content-Type': 'application/json',
     Authorization:
