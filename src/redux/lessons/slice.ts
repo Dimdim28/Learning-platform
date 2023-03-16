@@ -7,7 +7,8 @@ import { LessonsSliceState } from './types';
 
 const initialState: LessonsSliceState = {
   status: Status.LOADING,
-  lessons: null,
+  lessons: [],
+  courseInfo: null,
 };
 
 const lessonsSlice = createSlice({
@@ -20,7 +21,9 @@ const lessonsSlice = createSlice({
       state.status = Status.LOADING;
     });
     builder.addCase(fetchLessons.fulfilled, (state, action) => {
-      state.lessons = action.payload;
+      const { lessons, ...courseInfo } = action.payload;
+      state.lessons = lessons;
+      state.courseInfo = courseInfo;
       state.status = Status.SUCCESS;
     });
     builder.addCase(fetchLessons.rejected, (state, action) => {

@@ -1,6 +1,6 @@
 import { Course, Status } from '../types';
 
-type Lesson = {
+export type Lesson = {
   id: string;
   title: string;
   duration: number;
@@ -16,7 +16,8 @@ export type Lessons = Course & { lessons: Lesson[] };
 
 export interface LessonsSliceState {
   status: Status;
-  lessons: Lessons;
+  lessons: Lesson[];
+  courseInfo: Course | null;
   Error?: string;
 }
 
