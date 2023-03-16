@@ -9,7 +9,9 @@ export const fetchCourses = createAsyncThunk<Course[], GetCoursesParams>(
   'details/getDetails',
 
   async params => {
-    const data = await axiosInstance.get('core/preview-courses', {});
+    const data = await axiosInstance.get('core/preview-courses', {
+      maxRedirects: 0,
+    });
     console.log('data =', data, 'params =', params);
     return data.data;
   },
