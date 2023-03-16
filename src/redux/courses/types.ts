@@ -5,3 +5,7 @@ export interface CoursesSliceState {
   courses: Course[];
   Error?: string;
 }
+
+export interface FetchCourseResponse {
+  courses: Course[];
+}
