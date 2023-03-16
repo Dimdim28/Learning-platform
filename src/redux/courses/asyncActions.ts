@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 import axiosInstance from '@/services/instance';
 
@@ -8,11 +9,17 @@ export const fetchCourses = createAsyncThunk<Course[]>(
   'courses/getCourses',
 
   async () => {
-    const { data, status, statusText } = await axiosInstance.get<Course[]>(
-      'core/preview-courses',
-    );
-    if (status === 200) return data;
-    console.log('data =', data);
-    throw new Error(String(statusText));
+    try {
+      const { data } = await axiosInstance.get<Course[]>(
+        'core/preview-courses',
+      );
+      return data;
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        throw new Error(e.response.data.message);
+      } else {
+        throw e;
+      }
+    }
   },
 );
