@@ -67,11 +67,9 @@ const CourseCard: React.FC<CourseCardProps> = ({
           <div className={styles.line}>
             <p>{duration} minutes</p>
             <p>
-              {status === 'launched' ? (
-                <p>{new Date(launchDate).toLocaleDateString()}</p>
-              ) : (
-                'Not started yet'
-              )}
+              {status === 'launched'
+                ? `${new Date(launchDate).toLocaleDateString()}`
+                : 'Not started yet'}
             </p>
           </div>
         </div>
