@@ -42,7 +42,12 @@ const CourseCard: React.FC<CourseCardProps> = ({
           <p className={styles.description}>{description}</p>
           <div className={styles.line}>
             <p className={styles.lessons}>{lessonsCount} lessons</p>
-            <Rating readOnly defaultValue={rating} precision={0.5} />
+            <Rating
+              className={styles.stars}
+              readOnly
+              defaultValue={rating}
+              precision={0.5}
+            />
             {tags.length === 1 && <p className={styles.tag}>{tags[0]}</p>}
           </div>
 
