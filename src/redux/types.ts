@@ -8,7 +8,7 @@ export type Course = {
   id: string;
   title: string;
   tags: string[];
-  launchDate: string;
+  launchDate?: string;
   status: string;
   description: string;
   duration: number;
@@ -18,7 +18,9 @@ export type Course = {
   rating: number;
   meta: {
     slug: string;
-    skills: string[];
+    skills?: string[];
+    fullCourseProductId?: string;
+    fullCourseProductFamily?: string;
     courseVideoPreview: {
       link: string;
       duration: number;
