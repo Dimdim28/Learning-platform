@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .wrapper {
   width: 100%;
   @include center();
@@ -36,5 +37,15 @@
     transition: 0.3s;
     background-color: #1976d2;
     color: white;
+  }
+}
+
+@media (max-width: 576px) {
+  .buttons {
+    .button,
+    .activeButton {
+      width: 30px;
+      height: 30px;
+    }
   }
 }

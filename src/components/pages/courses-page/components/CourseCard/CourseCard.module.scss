@@ -81,11 +81,18 @@
   .wrapper {
     width: 100%;
     height: auto;
-    margin: 5px;
     img {
       height: auto;
     }
     .info {
+      h2 {
+        font-size: 23px;
+      }
+      p,
+      div {
+        font-size: 18px;
+        text-align: center;
+      }
       .line {
         flex-direction: column;
         align-items: center;
@@ -94,12 +101,30 @@
         &:last-child {
           flex-direction: row;
           align-items: center;
+          flex-wrap: wrap;
+          p {
+            margin: 5px 0;
+          }
         }
-        p {
-          font-size: 20px;
-        }
+
         .stars {
           margin: 10px 0;
+        }
+      }
+      .skills {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+@media (max-width: 357px) {
+  .wrapper {
+    .info {
+      .line {
+        &:last-child {
+          flex-direction: column;
+          align-items: center;
         }
       }
     }
