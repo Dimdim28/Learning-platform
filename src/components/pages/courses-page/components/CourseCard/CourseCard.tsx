@@ -1,4 +1,5 @@
 import React from 'react';
+import { Rating } from '@mui/material';
 import Link from 'next/link';
 
 import styles from './CourseCard.module.scss';
@@ -40,30 +41,25 @@ const CourseCard: React.FC<CourseCardProps> = ({
           <h2 className={styles.title}>{title}</h2>
           <p className={styles.description}>{description}</p>
           <div className={styles.line}>
-            <p>{lessonsCount} lessons</p>
-            <p>Rating: {rating}/5</p>
+            <p className={styles.lessons}>{lessonsCount} lessons</p>
+            <Rating readOnly defaultValue={rating} precision={0.5} />
+            {tags.length === 1 && <p className={styles.tag}>{tags[0]}</p>}
           </div>
 
-          {tags && (
+          {tags?.length > 1 && (
             <div className={styles.tags}>
-              <p>Tags: </p>
               {tags?.map((tag, index) => (
                 <p className={styles.tag} key={index}>
-                  <i>{tag}</i>
+                  {tag}
                 </p>
               ))}
             </div>
           )}
-          {skills && (
-            <div className={styles.skills}>
-              <p>Skills: </p>
-              {skills?.map((skill, index) => (
-                <p className={styles.skill} key={index}>
-                  <i>{skill}</i>
-                </p>
-              ))}
-            </div>
-          )}
+
+          <div className={styles.skills}>
+            {skills ? skills.join(', ') : 'No skills mentioned'}
+          </div>
+
           <div className={styles.line}>
             <p>{duration} minutes</p>
             <p>

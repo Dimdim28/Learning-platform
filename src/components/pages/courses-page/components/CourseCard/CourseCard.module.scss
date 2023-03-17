@@ -1,32 +1,42 @@
 .wrapper {
-  width: 300px;
-  height: 700px;
-  border-radius: 10px;
+  width: 360px;
+  height: 480px;
+  border-radius: 5px;
+  transition: 0.3s;
+  &:hover {
+    box-shadow: 0 0 10px black;
+  }
 }
 
 .link {
   text-decoration: none;
-  border-radius: 10px;
+  display: block;
   color: black;
   height: 100%;
   width: 100%;
-  position: relative;
+  padding: 10px;
 
   img {
     height: 132px;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
     width: 100%;
   }
 
   .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: calc(100% - 132px);
     h2 {
-      font-size: 22px;
-    }
-    p {
+      margin-top: 3px;
       font-size: 18px;
-      margin: 5px 0;
+      text-align: center;
+    }
+    p,
+    div {
+      font-size: 16px;
       text-align: justify;
+      font-weight: 600;
     }
     .line {
       display: flex;
@@ -34,15 +44,35 @@
       align-items: center;
       width: 100%;
     }
-    strong {
-      font-size: 18px;
-    }
-    .tags,
     .skills {
-      font-size: 18px;
-      i {
-        font-weight: 600;
+      font-size: 16px;
+      font-weight: 600;
+      width: 100%;
+    }
+
+    .lessons {
+      font-size: 20px;
+      color: purple;
+    }
+
+    .tags {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      overflow-y: auto;
+      .tag {
+        padding: 5px 10px;
+        margin-top: 5px;
       }
+    }
+    .tag {
+      color: purple;
+      border: 2px solid purple;
+      padding: 3px 6px;
+      border-radius: 40px;
+      width: fit-content;
     }
   }
 }

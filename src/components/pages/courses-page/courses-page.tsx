@@ -29,7 +29,6 @@ const CoursesPage = () => {
   }, [currentPage]);
   if (status === 'loading') return <Preloader />;
   if (status === 'error') return <div>{error}</div>;
-  console.log(courses);
   const sortedCourses = courses
     .slice(10 * (currentPage - 1), 10 * currentPage)
     .sort(
