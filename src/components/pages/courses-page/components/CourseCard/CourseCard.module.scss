@@ -6,6 +6,7 @@
   &:hover {
     box-shadow: 0 0 10px black;
   }
+  background-color: #fff;
 }
 
 .link {
@@ -16,9 +17,19 @@
   width: 100%;
   padding: 10px;
 
-  img {
+  .img {
     height: 132px;
     width: 100%;
+  }
+
+  .video {
+    height: 132px;
+    width: 100%;
+    display: block;
+  }
+
+  .videoDisabled {
+    display: none;
   }
 
   .info {
@@ -71,7 +82,7 @@
       color: purple;
       border: 2px solid purple;
       padding: 3px 6px;
-      border-radius: 40px;
+      border-radius: 5px;
       width: fit-content;
     }
   }
@@ -81,7 +92,7 @@
   .wrapper {
     width: 100%;
     height: auto;
-    img {
+    .img {
       height: auto;
     }
     .info {

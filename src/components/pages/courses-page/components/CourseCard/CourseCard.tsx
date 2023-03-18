@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Rating } from '@mui/material';
+import Hls from 'hls.js';
 import Link from 'next/link';
 
 import styles from './CourseCard.module.scss';
@@ -16,7 +17,9 @@ interface CourseCardProps {
   duration: number;
   launchDate?: string;
   status: string;
-  video?: string;
+  videoLink?: string;
+  videoDuration: number;
+  videoPreviewImage: string;
 }
 
 const CourseCard: React.FC<CourseCardProps> = ({
@@ -31,12 +34,48 @@ const CourseCard: React.FC<CourseCardProps> = ({
   duration,
   launchDate,
   status,
-  video,
+  videoLink,
+  videoDuration,
+  videoPreviewImage,
 }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const mouseEnterHandler = () => {
+    const video = videoRef.current;
+    setIsPlaying(true);
+    if (video && videoPreviewImage) {
+      const hls = new Hls();
+      hls.loadSource(videoLink);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        video.play();
+      });
+    }
+  };
+
+  const mouseLeaveHandler = () => {
+    setIsPlaying(false);
+    const video = videoRef.current;
+    if (video) video.pause();
+  };
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={styles.wrapper}
+      onMouseEnter={mouseEnterHandler}
+      onMouseLeave={mouseLeaveHandler}
+    >
       <Link className={styles.link} href={`course/${id}`}>
-        <img src={`${image}/cover.webp`} className={styles.courseImg} />
+        {!isPlaying && (
+          <img src={`${image}/cover.webp`} className={styles.img} />
+        )}
+        <video
+          className={isPlaying ? styles.video : styles.videoDisabled}
+          ref={videoRef}
+          poster={videoPreviewImage + '/cover.webp'}
+          muted
+        />
+
         <div className={styles.info}>
           <h2 className={styles.title}>{title}</h2>
           <p className={styles.description}>{description}</p>
