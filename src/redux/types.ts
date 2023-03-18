@@ -21,7 +21,7 @@ export type Course = {
     skills?: string[];
     fullCourseProductId?: string;
     fullCourseProductFamily?: string;
-    courseVideoPreview: {
+    courseVideoPreview?: {
       link: string;
       duration: number;
       previewImageLink: string;

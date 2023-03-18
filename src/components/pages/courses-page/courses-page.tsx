@@ -61,9 +61,10 @@ const CoursesPage = () => {
               lessonsCount={lessonsCount}
               skills={meta.skills}
               rating={rating}
-              videoLink={meta.courseVideoPreview?.link}
-              videoDuration={meta.courseVideoPreview.duration}
-              videoPreviewImage={meta.courseVideoPreview.previewImageLink}
+              videoLink={meta.courseVideoPreview?.link || ''}
+              videoPreviewImage={
+                meta.courseVideoPreview?.previewImageLink || ''
+              }
               tags={tags}
               duration={duration}
               launchDate={launchDate}

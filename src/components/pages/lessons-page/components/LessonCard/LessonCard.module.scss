@@ -1,0 +1,33 @@
+.wrapper {
+  width: 240px;
+  font-size: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  .image {
+    width: 240px;
+    height: 132px;
+  }
+}
+
+.locked {
+  width: 240px;
+  font-size: 20px;
+  overflow: hidden;
+  opacity: 0.5;
+  pointer-events: none;
+  .image {
+    width: 240px;
+    height: 132px;
+  }
+}
+
+.active {
+  width: 240px;
+  font-size: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 10px blue;
+  .image {
+    width: 240px;
+    height: 132px;
+  }
+}

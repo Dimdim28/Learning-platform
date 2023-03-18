@@ -17,8 +17,7 @@ interface CourseCardProps {
   duration: number;
   launchDate?: string;
   status: string;
-  videoLink?: string;
-  videoDuration: number;
+  videoLink: string;
   videoPreviewImage: string;
 }
 
@@ -35,17 +34,22 @@ const CourseCard: React.FC<CourseCardProps> = ({
   launchDate,
   status,
   videoLink,
-  videoDuration,
   videoPreviewImage,
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-
+  const [isErrorOccured, setIsErrorOccured] = useState(false);
   const mouseEnterHandler = () => {
     const video = videoRef.current;
     setIsPlaying(true);
-    if (video && videoPreviewImage) {
+    if (video) {
       const hls = new Hls();
+      hls.on(Hls.Events.ERROR, function (event, data) {
+        const errorFatal = data.fatal;
+        if (errorFatal) {
+          setIsErrorOccured(true);
+        }
+      });
       hls.loadSource(videoLink);
       hls.attachMedia(video);
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
@@ -69,12 +73,23 @@ const CourseCard: React.FC<CourseCardProps> = ({
         {!isPlaying && (
           <img src={`${image}/cover.webp`} className={styles.img} />
         )}
-        <video
-          className={isPlaying ? styles.video : styles.videoDisabled}
-          ref={videoRef}
-          poster={videoPreviewImage + '/cover.webp'}
-          muted
-        />
+        {isErrorOccured ? (
+          <div
+            style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
+          >
+            <img
+              className={isPlaying ? styles.notFound : styles.videoDisabled}
+              src="./404.png"
+            />
+          </div>
+        ) : (
+          <video
+            className={isPlaying ? styles.video : styles.videoDisabled}
+            ref={videoRef}
+            poster={videoPreviewImage + '/cover.webp'}
+            muted
+          />
+        )}
 
         <div className={styles.info}>
           <h2 className={styles.title}>{title}</h2>
@@ -105,7 +120,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
           </div>
 
           <div className={styles.line}>
-            <p>{duration} minutes</p>
+            <p>{duration} seconds</p>
             <p>
               {status === 'launched'
                 ? `${new Date(launchDate).toLocaleDateString()}`
