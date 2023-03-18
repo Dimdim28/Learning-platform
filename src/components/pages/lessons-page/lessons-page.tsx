@@ -43,7 +43,7 @@ const LessonsPage = () => {
         <p
           className={styles.back}
           onClick={() => {
-            router.back();
+            router.push('/');
           }}
         >
           {'< Back'}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styles from './LessonCard.module.scss';
 
@@ -31,6 +31,13 @@ const LessonCard: React.FC<lessonCardprops> = ({
   setCurrentVideo,
   currentVideo,
 }) => {
+  const [error, setError] = useState(false);
+  if (error)
+    return (
+      <div className={styles.wrapper}>
+        <img className={styles.image} src={'/404.png'} alt={'error'} />
+      </div>
+    );
   return (
     <div
       className={
@@ -45,6 +52,7 @@ const LessonCard: React.FC<lessonCardprops> = ({
       }}
     >
       <img
+        onError={() => setError(true)}
         className={styles.image}
         src={`${previewImageLink}/lesson-${order}.webp` || '/preview.jpg'}
         alt={title}

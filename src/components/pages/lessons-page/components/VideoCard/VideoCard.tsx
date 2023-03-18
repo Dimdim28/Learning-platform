@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import Hls from 'hls.js';
 
 import styles from './VideoCard.module.scss';
