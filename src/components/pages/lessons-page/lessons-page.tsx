@@ -20,7 +20,9 @@ const LessonsPage = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const status = useAppSelector(selectStatus);
-  const lessons = useAppSelector(selectLessons);
+  const lessons = useAppSelector(selectLessons)
+    .slice()
+    .sort((a, b) => a.order - b.order);
   const courseInfo = useAppSelector(selectCourseInfo);
   const error = useAppSelector(selectError);
   const [currentVideo, setCurrentVideo] = useState(0);

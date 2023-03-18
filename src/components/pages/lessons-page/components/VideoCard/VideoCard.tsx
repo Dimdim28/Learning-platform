@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Hls from 'hls.js';
 
 import styles from './VideoCard.module.scss';
@@ -12,19 +12,19 @@ const VideoCard: React.FC<VideoCardProps> = ({ src, title, poster }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const video = videoRef.current;
 
-  if (video && poster) {
-    const hls = new Hls();
-
-    if (!src)
-      return (
-        <div className={styles.wrapper}>
-          <div
-            style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
-          >
-            <img className={styles.notFound} src="/404.png" />
-          </div>
+  if (!src)
+    return (
+      <div className={styles.wrapper}>
+        <div
+          style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
+        >
+          <img className={styles.notFound} src="/404.png" />
         </div>
-      );
+      </div>
+    );
+
+  if (video) {
+    const hls = new Hls();
     hls.loadSource(src || '');
     hls.attachMedia(video);
   }
@@ -34,10 +34,10 @@ const VideoCard: React.FC<VideoCardProps> = ({ src, title, poster }) => {
       <video
         className={styles.video}
         ref={videoRef}
-        poster={poster}
+        poster={poster || '/preview.jpg'}
         muted
         controls={true}
-      />
+      ></video>
       <h1 className={styles.title}>{title}</h1>
     </div>
   );

@@ -46,7 +46,7 @@ const LessonCard: React.FC<lessonCardprops> = ({
     >
       <img
         className={styles.image}
-        src={`${previewImageLink}/lesson-${order}.webp`}
+        src={`${previewImageLink}/lesson-${order}.webp` || '/preview.jpg'}
         alt={title}
       />
       <p>{title}</p>
