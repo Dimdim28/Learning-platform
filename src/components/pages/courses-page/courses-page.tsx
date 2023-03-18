@@ -5,9 +5,11 @@ import Preloader from '@/components/common/Preloader';
 import { fetchCourses } from '@/redux/courses/asyncActions';
 import {
   selectCourses,
+  selectCurrentPage,
   selectError,
   selectStatus,
 } from '@/redux/courses/selectors';
+import { setCurrentPage } from '@/redux/courses/slice';
 
 import CourseCard from './components/CourseCard';
 import Pagination from './components/Pagination';
@@ -18,19 +20,22 @@ const CoursesPage = () => {
   const dispatch = useAppDispatch();
   const status = useAppSelector(selectStatus);
   const courses = useAppSelector(selectCourses);
-
+  const current = useAppSelector(selectCurrentPage);
   const error = useAppSelector(selectError);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [page, setPage] = useState(current);
   useEffect(() => {
     dispatch(fetchCourses());
   }, [dispatch]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [currentPage]);
+    dispatch(setCurrentPage(page));
+  }, [page, dispatch]);
+
   if (status === 'loading') return <Preloader />;
   if (status === 'error') return <div>{error}</div>;
   const sortedCourses = courses
-    .slice(10 * (currentPage - 1), 10 * currentPage)
+    .slice(10 * (page - 1), 10 * page)
     .sort(
       (a, b) =>
         new Date(b.launchDate).valueOf() - new Date(a.launchDate).valueOf(),
@@ -74,8 +79,8 @@ const CoursesPage = () => {
         )}
       </div>
       <Pagination
-        currentPage={currentPage}
-        setPage={setCurrentPage}
+        currentPage={page}
+        setPage={setPage}
         totalPages={Math.ceil(courses.length / 10)}
       />
     </div>

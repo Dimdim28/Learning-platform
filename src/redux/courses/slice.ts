@@ -8,12 +8,17 @@ import { CoursesSliceState } from './types';
 const initialState: CoursesSliceState = {
   status: Status.LOADING,
   courses: [],
+  currentPage: 1,
 };
 
 const coursesSlice = createSlice({
   name: 'courses',
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentPage(state, action) {
+      state.currentPage = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder.addCase(fetchCourses.pending, state => {
       delete state.Error;
@@ -29,5 +34,7 @@ const coursesSlice = createSlice({
     });
   },
 });
+
+export const { setCurrentPage } = coursesSlice.actions;
 
 export default coursesSlice.reducer;
