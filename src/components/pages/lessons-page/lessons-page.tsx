@@ -35,7 +35,6 @@ const LessonsPage = () => {
   }, [asPath, isReady, dispatch]);
   if (status === 'loading') return <Preloader />;
   if (status === 'error') return <div>{error}</div>;
-
   const { link, previewImageLink, order, title } = lessons[currentVideo];
   return (
     <div className={styles.wrapper}>

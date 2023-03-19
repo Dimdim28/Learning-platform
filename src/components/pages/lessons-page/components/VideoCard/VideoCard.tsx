@@ -11,11 +11,19 @@ interface VideoCardProps {
 const VideoCard: React.FC<VideoCardProps> = ({ src, title, poster }) => {
   const videoRef = useRef(null);
 
+  const setCurrentTime = () => {
+    localStorage.setItem(src, videoRef.current.currentTime);
+  };
+  const getCurrentTime = () => {
+    videoRef.current.currentTime = localStorage.getItem(src) || 0;
+  };
+
   useEffect(() => {
     const video = videoRef.current;
     const hls = new Hls();
     hls.loadSource(src);
     hls.attachMedia(video);
+    getCurrentTime();
   }, [videoRef, src]);
 
   return (
@@ -28,6 +36,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ src, title, poster }) => {
             poster={poster || '/preview.jpg'}
             muted
             controls={true}
+            onTimeUpdate={setCurrentTime}
           />
           <h1 className={styles.title}>{title}</h1>
         </>

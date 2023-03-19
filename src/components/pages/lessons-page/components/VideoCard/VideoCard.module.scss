@@ -1,3 +1,14 @@
+@mixin smallVideoWrapper($deviceWidth, $height) {
+  @media (max-width: $deviceWidth) {
+    .wrapper {
+      .notFound,
+      .video {
+        height: $height;
+      }
+    }
+  }
+}
+
 .wrapper {
   max-width: calc(100% - 540px);
   padding: 10px;
@@ -11,10 +22,31 @@
   font-size: 25px;
 }
 
+.video {
+  object-fit: cover;
+}
+
 .notFound,
 .video,
 .title {
-  width: 800px;
+  width: 900px;
+}
+
+.video,
+.notFound {
+  height: 450px;
+}
+
+@media (max-width: 1500px) {
+  .notFound,
+  .video,
+  .title {
+    width: 800px;
+  }
+  .video,
+  .notFound {
+    height: 425px;
+  }
 }
 
 @media (max-width: 1440px) {
@@ -23,15 +55,20 @@
   .title {
     width: 700px;
   }
+  .video,
+  .notFound {
+    height: 395px;
+  }
 }
 
 @media (max-width: 1200px) {
   .notFound,
-  .video,
-  .title {
+  .video {
     width: 540px;
+    height: 300px;
   }
   .title {
+    width: 540px;
     font-size: 23px;
   }
 }
@@ -41,9 +78,22 @@
     max-width: 100%;
     width: 100%;
     .notFound,
-    .video,
+    .video {
+      width: 100%;
+      height: 550px;
+      object-fit: fill;
+    }
     .title {
       width: 100%;
     }
   }
 }
+
+@include smallVideoWrapper(900px, 450px);
+@include smallVideoWrapper(768px, 380px);
+@include smallVideoWrapper(600px, 300px);
+@include smallVideoWrapper(480px, 280px);
+@include smallVideoWrapper(450px, 240px);
+@include smallVideoWrapper(400px, 210px);
+@include smallVideoWrapper(350px, 180px);
+@include smallVideoWrapper(300px, 150px);
