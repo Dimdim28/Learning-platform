@@ -11,7 +11,7 @@ interface lessonCardprops {
   link: string;
   status: string;
   previewImageLink: string;
-  meta: {
+  meta?: {
     difficulty: string;
   };
   setCurrentVideo: React.Dispatch<React.SetStateAction<number>>;
