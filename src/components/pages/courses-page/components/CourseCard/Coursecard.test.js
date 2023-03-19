@@ -33,9 +33,7 @@ describe('CourseCard component', () => {
     expect(screen.getByText('productivity')).toBeInTheDocument();
     expect(screen.getByText('Stop the procrastination')).toBeInTheDocument();
     expect(screen.getByText('666 seconds')).toBeInTheDocument();
-    expect(
-      screen.getByText('06.03.2023') || screen.getByText('3/6/2023'),
-    ).toBeInTheDocument();
+    expect(screen.getByText('3/6/2023')).toBeInTheDocument();
     expect(screen.getByText('first skill, second skill')).toBeInTheDocument();
     expect(screen.getByText('10 lessons')).toBeInTheDocument();
     expect(screen.getByAltText('image')).toBeInTheDocument();
