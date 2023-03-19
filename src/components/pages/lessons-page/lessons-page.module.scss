@@ -60,3 +60,68 @@
     }
   }
 }
+
+.description {
+  min-width: 100%;
+  width: 100%;
+  padding: 10px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  p {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 10px;
+    max-width: 100%;
+  }
+
+  .info {
+    max-width: 100%;
+    background-color: #1976d2;
+    color: white;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 25px;
+    padding: 10px;
+    p {
+      height: fit-content;
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 1560px) {
+  .description {
+    width: 900px;
+  }
+}
+
+@media (max-width: 1500px) {
+  .description {
+    width: 800px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .description {
+    width: 700px;
+  }
+}
+@media (max-width: 1200px) {
+  .description {
+    width: 540px;
+  }
+}
+@media (max-width: 1024px) {
+  .wrapper {
+    .courseContent {
+      .lessons {
+        overflow: visible;
+      }
+    }
+  }
+  .description {
+    max-width: 100%;
+    width: 100%;
+  }
+}

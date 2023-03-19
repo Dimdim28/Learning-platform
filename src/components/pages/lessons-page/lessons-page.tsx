@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Rating } from '@mui/material';
 import { useAppDispatch, useAppSelector } from 'hooks/appHooks';
 import { useRouter } from 'next/router';
 
@@ -50,11 +51,27 @@ const LessonsPage = () => {
         <p>{courseInfo.title}</p>
       </div>
       <div className={styles.courseContent}>
-        <VideoCard
-          src={link || ''}
-          poster={previewImageLink + '/lesson-' + order + '.webp'}
-          title={title}
-        />
+        <div>
+          <VideoCard
+            src={link || ''}
+            poster={previewImageLink + '/lesson-' + order + '.webp'}
+            title={title}
+          />
+          <div className={styles.description}>
+            <p> {courseInfo.description}</p>
+            <div className={styles.info}>
+              <Rating
+                className={styles.stars}
+                readOnly
+                defaultValue={courseInfo.rating}
+                precision={0.5}
+                size="large"
+              />
+              <p>{courseInfo.duration} seconds</p>
+            </div>
+          </div>
+        </div>
+
         <div className={styles.lessons}>
           {lessons.map((lesson, id) => (
             <LessonCard
