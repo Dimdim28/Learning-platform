@@ -71,7 +71,11 @@ const CourseCard: React.FC<CourseCardProps> = ({
     >
       <Link className={styles.link} href={`course/${id}`}>
         {!isPlaying && (
-          <img src={`${image}/cover.webp`} className={styles.img} />
+          <img
+            src={`${image}/cover.webp`}
+            className={styles.img}
+            alt={'image'}
+          />
         )}
         {isErrorOccured ? (
           <div
@@ -80,15 +84,17 @@ const CourseCard: React.FC<CourseCardProps> = ({
             <img
               className={isPlaying ? styles.notFound : styles.videoDisabled}
               src="./404.png"
+              alt="errorImage"
             />
           </div>
         ) : (
           <video
+            role={'video'}
             className={isPlaying ? styles.video : styles.videoDisabled}
             ref={videoRef}
             // poster={
             //   videoPreviewImage
-            //     ? videoPreviewImage + '/cover.webp'
+            //     ? videoPreviewImage + '/cover.webp'  removed because images not found
             //     : '/preview.jpg'
             // }
             muted
@@ -110,7 +116,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
           </div>
 
           {tags?.length > 1 && (
-            <div className={styles.tags}>
+            <div className={styles.tags} role={'tagsContainer'}>
               {tags?.map((tag, index) => (
                 <p className={styles.tag} key={index}>
                   {tag}
