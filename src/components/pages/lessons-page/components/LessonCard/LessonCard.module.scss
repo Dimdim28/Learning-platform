@@ -5,7 +5,6 @@
   cursor: pointer;
   .image {
     width: 240px;
-    height: 132px;
   }
 }
 
@@ -17,7 +16,6 @@
   pointer-events: none;
   .image {
     width: 240px;
-    height: 132px;
   }
 }
 
@@ -28,6 +26,39 @@
   box-shadow: 0 0 10px blue;
   .image {
     width: 240px;
-    height: 132px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .wrapper,
+  .active,
+  .locked {
+    width: 200px;
+    .image {
+      width: 200px;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .wrapper,
+  .active,
+  .locked {
+    width: 300px;
+    .image {
+      width: 300px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper,
+  .active,
+  .locked {
+    width: 100%;
+    text-align: center;
+    .image {
+      width: 100%;
+    }
   }
 }

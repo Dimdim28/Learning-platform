@@ -23,9 +23,10 @@ const CoursesPage = () => {
   const current = useAppSelector(selectCurrentPage);
   const error = useAppSelector(selectError);
   const [page, setPage] = useState(current);
+
   useEffect(() => {
-    dispatch(fetchCourses());
-  }, [dispatch]);
+    if (!courses.length) dispatch(fetchCourses());
+  }, [dispatch, courses]);
 
   useEffect(() => {
     window.scrollTo(0, 0);

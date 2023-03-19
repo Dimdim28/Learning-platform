@@ -30,6 +30,7 @@
 
   .notFound {
     height: 132px;
+    display: block;
   }
 
   .videoDisabled {
@@ -96,8 +97,11 @@
   .wrapper {
     width: 100%;
     height: auto;
-    .img {
-      height: auto;
+    .img,
+    .video,
+    .notFound {
+      height: 250px;
+      width: 100%;
     }
     .info {
       h2 {

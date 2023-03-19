@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Hls from 'hls.js';
 
 import styles from './VideoCard.module.scss';
@@ -9,36 +9,35 @@ interface VideoCardProps {
 }
 
 const VideoCard: React.FC<VideoCardProps> = ({ src, title, poster }) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const video = videoRef.current;
+  const videoRef = useRef(null);
 
-  if (!src)
-    return (
-      <div className={styles.wrapper}>
+  useEffect(() => {
+    const video = videoRef.current;
+    const hls = new Hls();
+    hls.loadSource(src);
+    hls.attachMedia(video);
+  }, [videoRef, src]);
+
+  return (
+    <div className={styles.wrapper}>
+      {src ? (
+        <>
+          <video
+            className={styles.video}
+            ref={videoRef}
+            poster={poster || '/preview.jpg'}
+            muted
+            controls={true}
+          />
+          <h1 className={styles.title}>{title}</h1>
+        </>
+      ) : (
         <div
           style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
         >
           <img className={styles.notFound} src="/404.png" />
         </div>
-      </div>
-    );
-
-  if (video) {
-    const hls = new Hls();
-    hls.loadSource(src || '');
-    hls.attachMedia(video);
-  }
-
-  return (
-    <div className={styles.wrapper}>
-      <video
-        className={styles.video}
-        ref={videoRef}
-        poster={poster || '/preview.jpg'}
-        muted
-        controls={true}
-      ></video>
-      <h1 className={styles.title}>{title}</h1>
+      )}
     </div>
   );
 };

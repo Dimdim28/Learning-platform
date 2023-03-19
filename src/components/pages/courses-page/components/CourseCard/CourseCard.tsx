@@ -86,11 +86,11 @@ const CourseCard: React.FC<CourseCardProps> = ({
           <video
             className={isPlaying ? styles.video : styles.videoDisabled}
             ref={videoRef}
-            poster={
-              videoPreviewImage
-                ? videoPreviewImage + '/cover.webp'
-                : '/preview.jpg'
-            }
+            // poster={
+            //   videoPreviewImage
+            //     ? videoPreviewImage + '/cover.webp'
+            //     : '/preview.jpg'
+            // }
             muted
           />
         )}
