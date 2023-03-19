@@ -28,7 +28,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/lib/component"
-  ],
+, "index.test.ts"  ],
   "exclude": [
     "node_modules"
   ]
