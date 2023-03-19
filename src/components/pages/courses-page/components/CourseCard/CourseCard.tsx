@@ -34,7 +34,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
   launchDate,
   status,
   videoLink,
-  videoPreviewImage,
+  //videoPreviewImage,
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);

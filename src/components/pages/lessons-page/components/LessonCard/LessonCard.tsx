@@ -19,15 +19,11 @@ interface lessonCardprops {
 }
 
 const LessonCard: React.FC<lessonCardprops> = ({
-  id,
   title,
-  duration,
   order,
-  type,
   status,
   previewImageLink,
   link,
-  meta,
   setCurrentVideo,
   currentVideo,
 }) => {
