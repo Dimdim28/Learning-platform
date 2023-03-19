@@ -16,6 +16,8 @@ This is the test task for Genesis Front-End School 2.0. Education platform with 
 ## Used technologies
 
 - [Next.js](https://nextjs.org)
+- [Redux Toolkit](https://redux-toolkit.js.org/tutorials/quick-start)
+- [Typescript](https://www.typescriptlang.org/)
 - [SASS modules](https://github.com/sass/sass)
 - [Used Rating component from MUI](https://mui.com)
 
