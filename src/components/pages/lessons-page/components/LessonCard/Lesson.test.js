@@ -1,10 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import '@testing-library/jest-dom';
 
 import LessonCard from './LessonCard';
 
-describe('Pagination component ', () => {
+describe('VideoCard component ', () => {
   it('renders correctly if this is current lesson', () => {
     render(
       <LessonCard
