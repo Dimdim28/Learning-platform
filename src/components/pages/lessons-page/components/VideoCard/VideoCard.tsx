@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import Hls from 'hls.js';
 
 import styles from './VideoCard.module.scss';
@@ -14,9 +14,9 @@ const VideoCard: React.FC<VideoCardProps> = ({ src, title, poster }) => {
   const setCurrentTime = () => {
     localStorage.setItem(src, videoRef.current.currentTime);
   };
-  const getCurrentTime = () => {
+  const getCurrentTime = useCallback(() => {
     videoRef.current.currentTime = localStorage.getItem(src) || 0;
-  };
+  }, [src]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -24,7 +24,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ src, title, poster }) => {
     hls.loadSource(src);
     hls.attachMedia(video);
     getCurrentTime();
-  }, [videoRef, src]);
+  }, [videoRef, src, getCurrentTime]);
 
   useEffect(() => {
     const handleKeyDown = (event: {
@@ -62,6 +62,10 @@ const VideoCard: React.FC<VideoCardProps> = ({ src, title, poster }) => {
             onTimeUpdate={setCurrentTime}
           />
           <h1 className={styles.title}>{title}</h1>
+          <p className={styles.description}>
+            Use <b>&apos;9&apos;</b> and <b>&apos;0&apos;</b> buttons to change
+            video playing speed
+          </p>
         </>
       ) : (
         <div
