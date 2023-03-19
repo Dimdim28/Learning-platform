@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 
 import NotFoundPage from './notfound-page';
 
-describe('Error component', () => {
+describe('404 page component', () => {
   beforeEach(() => {
     render(<NotFoundPage />);
   });
