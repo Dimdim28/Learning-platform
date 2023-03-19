@@ -34,7 +34,7 @@ const LessonCard: React.FC<lessonCardprops> = ({
   const [error, setError] = useState(false);
   if (error)
     return (
-      <div className={styles.wrapper}>
+      <div className={styles.wrapper} style={{ cursor: 'auto' }}>
         <img className={styles.image} src={'/404.png'} alt={'error'} />
       </div>
     );

@@ -15,7 +15,8 @@ const VideoCard: React.FC<VideoCardProps> = ({ src, title, poster }) => {
     localStorage.setItem(src, videoRef.current.currentTime);
   };
   const getCurrentTime = useCallback(() => {
-    videoRef.current.currentTime = localStorage.getItem(src) || 0;
+    if (videoRef.current)
+      videoRef.current.currentTime = localStorage.getItem(src) || 0;
   }, [src]);
 
   useEffect(() => {
