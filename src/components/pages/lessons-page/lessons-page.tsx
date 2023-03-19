@@ -3,6 +3,7 @@ import { Rating } from '@mui/material';
 import { useAppDispatch, useAppSelector } from 'hooks/appHooks';
 import { useRouter } from 'next/router';
 
+import Error from '@/components/common/Error';
 import Preloader from '@/components/common/Preloader';
 import { fetchLessons } from '@/redux/lessons/asyncActions';
 import {
@@ -35,7 +36,7 @@ const LessonsPage = () => {
     }
   }, [asPath, isReady, dispatch]);
   if (status === 'loading') return <Preloader />;
-  if (status === 'error') return <div>{error}</div>;
+  if (status === 'error') return <Error text={error} />;
   const { link, previewImageLink, order, title } = lessons[currentVideo];
   return (
     <div className={styles.wrapper}>

@@ -21,10 +21,12 @@ const VideoCard: React.FC<VideoCardProps> = ({ src, title, poster }) => {
 
   useEffect(() => {
     const video = videoRef.current;
-    const hls = new Hls();
-    hls.loadSource(src);
-    hls.attachMedia(video);
-    getCurrentTime();
+    if (video) {
+      const hls = new Hls();
+      hls.loadSource(src);
+      hls.attachMedia(video);
+      getCurrentTime();
+    }
   }, [videoRef, src, getCurrentTime]);
 
   useEffect(() => {

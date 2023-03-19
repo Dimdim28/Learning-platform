@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'hooks/appHooks';
 
+import Error from '@/components/common/Error';
 import Preloader from '@/components/common/Preloader';
 import { fetchCourses } from '@/redux/courses/asyncActions';
 import {
@@ -34,7 +35,7 @@ const CoursesPage = () => {
   }, [page, dispatch]);
 
   if (status === 'loading') return <Preloader />;
-  if (status === 'error') return <div>{error}</div>;
+  if (status === 'error') return <Error text={error} />;
   const sortedCourses = courses
     .slice(10 * (page - 1), 10 * page)
     .sort(
