@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 
-import Error from '@/components/common/Error';
-
 import '@testing-library/jest-dom';
+
+import Error from './Error';
 
 describe('Error component', () => {
   beforeEach(() => {
